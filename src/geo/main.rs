@@ -10,7 +10,7 @@ fn get_stores_by_city(
 ) -> redis::RedisResult<Vec<String>> {
     let store_ids = redis::cmd("SMEMBERS")
         .arg(format!("lidl_index:city:{}", city_name))
-        .query(connection)?;
+        .query(connection)?; // Has the complexity of O(N) where N is the number of elements in the set
     Ok(store_ids)
 }
 
@@ -25,7 +25,7 @@ fn get_distance_between_stores(
         .arg(store_id1)
         .arg(store_id2)
         .arg("km")
-        .query(connection)?;
+        .query(connection)?; // Has the complexity of O(1)
     Ok(distance)
 }
 
@@ -60,7 +60,7 @@ fn store_distances_to_sorted_set(
             .arg(format!("lidl_distances:{}", city_name))
             .arg(distance)
             .arg(store_pair)
-            .query(connection)?;
+            .query(connection)?; // Has the complexity of O(log(N)) where N is the number of elements in the sorted set
     }
     Ok(())
 }
@@ -72,7 +72,7 @@ fn get_average_distance(connection: &mut Connection, city_name: &str) -> redis::
         .arg(0)
         .arg(-1)
         .arg("WITHSCORES")
-        .query(connection)?;
+        .query(connection)?; // Has the complexity of O(log(N)+M) where N is the number of elements in the sorted set and M is the number of elements being returned
     let sum: f64 = distances.iter().map(|(_, distance)| distance).sum();
     Ok(sum / distances.len() as f64)
 }
@@ -84,7 +84,7 @@ fn get_max_distance(connection: &mut Connection, city_name: &str) -> redis::Redi
         .arg(-1)
         .arg(-1)
         .arg("WITHSCORES")
-        .query(connection)?;
+        .query(connection)?; // Has the complexity of O(log(N)+M) where N is the number of elements in the sorted set and M is the number of elements being returned
     Ok(max_distance.1)
 }
 
@@ -95,7 +95,7 @@ fn get_min_distance(connection: &mut Connection, city_name: &str) -> redis::Redi
         .arg(0)
         .arg(0)
         .arg("WITHSCORES")
-        .query(connection)?;
+        .query(connection)?; // Has the complexity of O(log(N)+M) where N is the number of elements in the sorted set and M is the number of elements being returned
     Ok(min_distance.1)
 }
 

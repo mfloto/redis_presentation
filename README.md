@@ -3,7 +3,7 @@
 ## Usefull links
 
 - [Redis commands](https://redis.io/commands)
-- [Redis commands cheatsheet](https://redis.io/topics/rediscli)
+- [Redis cli cheatsheet](https://redis.io/topics/rediscli)
 - [Redis university](https://university.redis.com/)
 - [RedisInsight - GUI](https://github.com/RedisInsight/RedisInsight)
 
