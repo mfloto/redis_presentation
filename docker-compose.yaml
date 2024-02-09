@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  redis:
+    hostname: redis
+    container_name: redis
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+
+  rust-demo:
+    hostname: redis-demo
+    container_name: redis-demo
+    build:
+      context: .
+    depends_on:
+      - redis
+    volumes:
+      - ./:/redis_demo
