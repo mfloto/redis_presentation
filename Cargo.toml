@@ -1,0 +1,21 @@
+[package]
+name = "redis-demo"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "cache"
+path = "src/cache/main.rs"
+
+[[bin]]
+name = "pubsub"
+path = "src/pubsub/main.rs"
+
+[[bin]]
+name = "geo"
+path = "src/geo/main.rs"
+
+[dependencies]
+
+[dependencies.redis]
+version = "0.24.0"
