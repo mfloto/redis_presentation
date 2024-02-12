@@ -16,4 +16,6 @@ area["ISO3166-1"="DE"]->.searchArea;
 out center;
 ```
 
+![Locations of Lidl supermarkets in Germany](../assets/lidl_locations.png)
+
 _OpenStreetMap® is open data, [licensed](https://www.openstreetmap.org/copyright) under the Open Data Commons Open Database License (ODbL) by the OpenStreetMap Foundation (OSMF)._
