@@ -16,6 +16,10 @@ name = "geo"
 path = "src/geo/main.rs"
 
 [[bin]]
+name = "geo_radius"
+path = "src/geo_radius/main.rs"
+
+[[bin]]
 name = "fibonacci_cache"
 path = "src/fibonacci_cache/main.rs"
 
