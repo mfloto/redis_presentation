@@ -40,7 +40,7 @@ redis-cli -h redis
 
 ---
 
-- Use demo application inside container (possible demo names: `cache`, `fibonacci_cache`, `pubsub`, `geo`)
+- Use demo application inside container (possible demo names: `cache`, `fibonacci_cache`, `pubsub`, `geo`, `geo_radius`)
 
 ```bash
 cargo run --bin [DEMO_NAME]
