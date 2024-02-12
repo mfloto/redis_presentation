@@ -1,4 +1,7 @@
-# Redis learning
+# Redis presentation
+
+This is the accompanying repository for a presentation on Redis containing multiple demos on the features and concepts
+discussed.
 
 ## Usefull links
 
@@ -94,3 +97,4 @@ cargo run --bin geo_radius 49.47474553497348 8.534231778349126 3
 
 _OpenStreetMap® is open data, [licensed](https://www.openstreetmap.org/copyright) under the Open Data Commons Open
 Database License (ODbL) by the OpenStreetMap Foundation (OSMF)._
+_Redis and the cube logo are registered trademarks of Redis Ltd._
