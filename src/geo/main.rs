@@ -3,6 +3,21 @@ use redis::Connection;
 use redis_demo::create_redis_connection;
 use std::collections::{HashMap, HashSet};
 
+struct Parameters {
+    city_name: String,
+}
+
+fn get_parameters() -> Parameters {
+    // Get from command line the name of the city
+    let city_name: String = std::env::args()
+        .nth(1)
+        .expect("Please provide the name of the city")
+        .parse()
+        .expect("Please provide a valid string");
+    let city_name = city_name.to_lowercase();
+    Parameters { city_name }
+}
+
 /// Get all the stores in a city using the city index
 fn get_stores_by_city(
     connection: &mut Connection,
@@ -21,7 +36,7 @@ fn get_distance_between_stores(
     store_id2: &str,
 ) -> redis::RedisResult<f64> {
     let distance: f64 = redis::cmd("GEODIST")
-        .arg("lidl_loc")
+        .arg("lidl_geo")
         .arg(store_id1)
         .arg(store_id2)
         .arg("km")
@@ -101,35 +116,43 @@ fn get_min_distance(connection: &mut Connection, city_name: &str) -> redis::Redi
 
 fn main() {
     let mut connection = create_redis_connection();
-    if let Ok(mannheim_stores) = get_stores_by_city(&mut connection, "mannheim") {
+    let parameters = get_parameters();
+    if let Ok(mannheim_stores) = get_stores_by_city(&mut connection, &parameters.city_name) {
         println!("Stores in Mannheim: {:?}\n", mannheim_stores);
         // Calculate the distance between all stores in that city
         if let Ok(distances) = calculate_all_distances(&mut connection, mannheim_stores) {
             // Store the distances in a sorted set
-            if let Ok(()) = store_distances_to_sorted_set(&mut connection, distances, "mannheim") {
+            if let Ok(()) =
+                store_distances_to_sorted_set(&mut connection, distances, &parameters.city_name)
+            {
                 println!("Stored the distances in a sorted set\n");
             }
 
             // Average distance between all stores in Mannheim
-            if let Ok(average_distance) = get_average_distance(&mut connection, "mannheim") {
+            if let Ok(average_distance) =
+                get_average_distance(&mut connection, &parameters.city_name)
+            {
                 println!(
-                    "Average distance between stores in Mannheim: {:.2} km\n",
+                    "Average distance between stores in {}: {:.2} km\n",
+                    &parameters.city_name,
                     average_distance
                 );
             }
 
             // Maximum distance between all stores in Mannheim
-            if let Ok(max_distance) = get_max_distance(&mut connection, "mannheim") {
+            if let Ok(max_distance) = get_max_distance(&mut connection, &parameters.city_name) {
                 println!(
-                    "Maximum distance between stores in Mannheim: {:.2} km\n",
+                    "Maximum distance between stores in {}: {:.2} km\n",
+                    &parameters.city_name,
                     max_distance
                 );
             }
 
             // Minimum distance between all stores in Mannheim
-            if let Ok(min_distance) = get_min_distance(&mut connection, "mannheim") {
+            if let Ok(min_distance) = get_min_distance(&mut connection, &parameters.city_name) {
                 println!(
-                    "Minimum distance between stores in Mannheim: {:.2} km\n",
+                    "Minimum distance between stores in {}: {:.2} km\n",
+                    &parameters.city_name,
                     min_distance
                 );
             }
