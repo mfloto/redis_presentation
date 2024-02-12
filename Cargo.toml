@@ -15,6 +15,10 @@ path = "src/pubsub/main.rs"
 name = "geo"
 path = "src/geo/main.rs"
 
+[[bin]]
+name = "fibonacci_cache"
+path = "src/fibonacci_cache/main.rs"
+
 [dependencies]
 
 [dependencies.redis]

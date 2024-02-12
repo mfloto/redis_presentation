@@ -29,13 +29,23 @@ docker exec -it redis-demo fish
 redis-cli -h redis
 ```
 
-- Use demo application inside container (possible demo names: `cache`, `pubsub`, `geo`)
+- Use demo application inside container (possible demo names: `cache`, `fibonacci_cache`, `pubsub`, `geo`)
 
 ```bash
 cargo run --bin [DEMO_NAME]
 ```
 
-_Hint: Before running the `geo` demo, you need to run the following to import the sample data provided by OpenStreetMap:_
+The demo `fibonacci_cache` requires two arguments:
+- `n` the nth number of fibonacci numbers to calculate
+- `cache` wether to use the cache or not
+
+Example:
+
+```bash
+cargo run --bin fibonacci_cache 20 true
+```
+
+The demo `geo` requires you to run the following to import the sample data provided by OpenStreetMap:
 
 ```bash
 python3 /redis_demo/sample_data/etl.py
