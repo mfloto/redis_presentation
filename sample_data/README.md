@@ -27,10 +27,11 @@ named `lidl_index:city:<city_name>`.
 ## Why the index is created using a set, rather than a sorted set.
 
 To access the data in a sorted set, the `ZRANGE` command is used. It returns the elements in the sorted set within the
-specified range. The time complexity of this command is $`O(log(N)+M)`$ with $`N`$ being the number of elements in the sorted set
-and $`M`$ being the number of elements returned, which is already quite good. However, in the following demos, we will always
-want to access all members of the set, so $`M = N`$, effectively changing the time complexity to $`O(log(N) + N)`$. To access all
-members of a set, the `SMEMBERS` command is used, which has a time complexity of $`O(N)`$, which ise better than $`O(log(N) + N)`$.
+specified range. The time complexity of this command is $`O(log(N)+M)`$ with $`N`$ being the number of elements in the
+sorted set and $`M`$ being the number of elements returned, which is already quite good. However, in the following
+demos, we will always want to access all members of the set, so $`M = N`$, effectively changing the time complexity
+to $`O(log(N) + N)`$. To access all members of a set, the `SMEMBERS` command is used, which has a time complexity
+of $`O(N)`$, where $`N`$ is the number of elements in the set, which is better than $`O(log(N) + N)`$.
 
 ---
 
