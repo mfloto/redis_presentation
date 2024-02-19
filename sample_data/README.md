@@ -24,7 +24,7 @@ The data of each store is stored in a hash with the key `lidl_location:<id>`, wh
 stored in a sorted set named `lidl_geo`. For a later demo, an index on the city is created in an unsorted set
 named `lidl_index:city:<city_name>`.
 
-## Why the index is created using a set, rather than a sorted set.
+## Why the index is created using a set, rather than a sorted set
 
 To access the data in a sorted set, the `ZRANGE` command is used. It returns the elements in the sorted set within the
 specified range. The time complexity of this command is $`O(log(N)+M)`$ with $`N`$ being the number of elements in the

@@ -3,12 +3,7 @@
 This is the accompanying repository for a presentation on Redis containing multiple demos on the features and concepts
 discussed.
 
-## Usefull links
-
-- [Redis commands](https://redis.io/commands)
-- [Redis cli cheatsheet](https://redis.io/topics/rediscli)
-- [Redis university](https://university.redis.com/)
-- [RedisInsight - GUI](https://github.com/RedisInsight/RedisInsight)
+![Overview of created environment](assets/demo_environment.png)
 
 ## How to run
 
@@ -92,6 +87,15 @@ Example:
 ```bash
 cargo run --bin geo_radius 49.47474553497348 8.534231778349126 3
 ```
+
+---
+
+## Useful links
+
+- [Redis commands](https://redis.io/commands)
+- [Redis cli cheatsheet](https://redis.io/topics/rediscli)
+- [Redis university](https://university.redis.com/)
+- [RedisInsight - GUI](https://github.com/RedisInsight/RedisInsight)
 
 ---
 
