@@ -35,6 +35,14 @@ redis-cli -h redis
 
 ---
 
+- Use RedisInsight in browser
+
+Visit [http://localhost:5540](http://localhost:5540) in your browser and add a new connection. Make sure to use `redis`
+as
+the hostname instead of `127.0.0.1` and keep the port on `6379`.
+
+---
+
 - Use demo application inside container (possible demo names: `cache`, `fibonacci_cache`, `pubsub`, `geo`, `geo_radius`)
 
 ```bash
