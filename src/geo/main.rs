@@ -117,10 +117,10 @@ fn get_min_distance(connection: &mut Connection, city_name: &str) -> redis::Redi
 fn main() {
     let mut connection = create_redis_connection();
     let parameters = get_parameters();
-    if let Ok(mannheim_stores) = get_stores_by_city(&mut connection, &parameters.city_name) {
-        println!("Stores in Mannheim: {:?}\n", mannheim_stores);
+    if let Ok(city_stores) = get_stores_by_city(&mut connection, &parameters.city_name) {
+        println!("Stores in {:?}: {:?}\n",&parameters.city_name, city_stores);
         // Calculate the distance between all stores in that city
-        if let Ok(distances) = calculate_all_distances(&mut connection, mannheim_stores) {
+        if let Ok(distances) = calculate_all_distances(&mut connection, city_stores) {
             // Store the distances in a sorted set
             if let Ok(()) =
                 store_distances_to_sorted_set(&mut connection, distances, &parameters.city_name)
