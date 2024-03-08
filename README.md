@@ -102,6 +102,7 @@ cargo run --bin geo_radius 49.47474553497348 8.534231778349126 3
 - [Redis commands](https://redis.io/commands)
 - [Redis cli cheatsheet](https://redis.io/topics/rediscli)
 - [Redis university](https://university.redis.com/)
+- [Redis antipatterns](https://developer.redis.com/howtos/antipatterns/)
 - [RedisInsight - GUI](https://github.com/RedisInsight/RedisInsight)
 
 ---
